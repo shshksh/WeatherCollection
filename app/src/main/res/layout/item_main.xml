@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/primaryColor"
+    app:cardCornerRadius="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -42,7 +44,6 @@
             app:layout_constraintBottom_toBottomOf="@id/tv_itemmain_location"
             app:layout_constraintEnd_toStartOf="@id/btn_itemmain_refresh"
             app:layout_constraintTop_toTopOf="@id/tv_itemmain_location" />
-
 
         <ImageButton
             android:id="@+id/btn_itemmain_refresh"
