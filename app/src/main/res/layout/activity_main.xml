@@ -1,15 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".MainActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
-        android:id="@+id/ll_main"
+    <data>
+
+        <variable
+            name="weather"
+            type="com.mob.weathercollection.model.weather.Weather" />
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp" />
+        tools:context=".MainActivity">
 
-</ScrollView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/layout_kma"
+                layout="@layout/item_main"
+                bind:weather="@{weather}" />
+
+            <include
+                android:id="@+id/layout_naver"
+                layout="@layout/item_main" />
+
+            <include
+                android:id="@+id/layout_openweather"
+                layout="@layout/item_main" />
+
+        </LinearLayout>
+
+    </ScrollView>
+</layout>
