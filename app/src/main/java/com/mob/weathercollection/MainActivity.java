@@ -1,24 +1,26 @@
 package com.mob.weathercollection;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.mob.weathercollection.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        LinearLayout llMain = findViewById(R.id.ll_main);
-        View itemMain = getLayoutInflater().inflate(R.layout.item_main, llMain, false);
-        llMain.addView(itemMain);
+        MainViewModel mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        binding.setLifecycleOwner(this);
+        binding.setVm(mainViewModel);
 
-        LinearLayout llItemMain = itemMain.findViewById(R.id.ll_itammain_temperatureperhour);
-        View itemTemp = getLayoutInflater().inflate(R.layout.item_tempperhours, llItemMain, false);
-        llItemMain.addView(itemTemp);
+//        LinearLayout llItemMain = binding.layoutKma.llItammainTemperatureperhour;
+//        View itemTemp = getLayoutInflater().inflate(R.layout.item_tempperhours, llItemMain, false);
+//        llItemMain.addView(itemTemp);
     }
 }

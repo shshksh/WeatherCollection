@@ -1,98 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/primaryColor"
-    app:cardCornerRadius="10dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.mob.weathercollection.MainViewModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp">
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardBackgroundColor="@color/primaryColor"
+        app:cardCornerRadius="10dp">
 
-        <TextView
-            android:id="@+id/tv_itemmain_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="40sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="연산 6동" />
-
-        <TextView
-            android:id="@+id/tv_itemmain_src"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@id/tv_itemmain_location"
-            app:layout_constraintStart_toEndOf="@id/tv_itemmain_location"
-            tools:text="(기상청)" />
-
-        <ImageButton
-            android:id="@+id/btn_itemmain_chooselocation"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_margin="5dp"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
-            android:padding="5dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_baseline_location_on_24"
-            app:layout_constraintBottom_toBottomOf="@id/tv_itemmain_location"
-            app:layout_constraintEnd_toStartOf="@id/btn_itemmain_refresh"
-            app:layout_constraintTop_toTopOf="@id/tv_itemmain_location" />
-
-        <ImageButton
-            android:id="@+id/btn_itemmain_refresh"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_margin="5dp"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
-            android:padding="5dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_baseline_refresh_24"
-            app:layout_constraintBottom_toBottomOf="@id/tv_itemmain_location"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_itemmain_location" />
-
-
-        <TextView
-            android:id="@+id/tv_itemmain_temperaturenow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="80sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_itemmain_location"
-            tools:text="25℃" />
-
-        <TextView
-            android:id="@+id/tv_itemmain_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:textSize="40sp"
-            app:layout_constraintBottom_toBottomOf="@id/tv_itemmain_temperaturenow"
-            app:layout_constraintStart_toEndOf="@id/tv_itemmain_temperaturenow"
-            app:layout_constraintTop_toTopOf="@id/tv_itemmain_temperaturenow"
-            tools:text="(맑음)" />
-
-        <HorizontalScrollView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/tv_itemmain_temperaturenow">
+            android:layout_height="match_parent"
+            android:layout_margin="10dp">
 
-            <LinearLayout
-                android:id="@+id/ll_itammain_temperatureperhour"
+            <TextView
+                android:id="@+id/tv_itemmain_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" />
+                android:text="@{vm.kmaWeather.channel.item.category}"
+                android:textSize="40sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </HorizontalScrollView>
+            <TextView
+                android:id="@+id/tv_itemmain_src"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text='@{"("+vm.kmaWeather.src+")"}'
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_itemmain_location"
+                app:layout_constraintStart_toEndOf="@id/tv_itemmain_location" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageButton
+                android:id="@+id/btn_itemmain_chooselocation"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_margin="5dp"
+                android:adjustViewBounds="true"
+                android:background="@android:color/transparent"
+                android:padding="5dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_baseline_location_on_24"
+                app:layout_constraintBottom_toBottomOf="@id/tv_itemmain_location"
+                app:layout_constraintEnd_toStartOf="@id/btn_itemmain_refresh"
+                app:layout_constraintTop_toTopOf="@id/tv_itemmain_location" />
 
-</androidx.cardview.widget.CardView>
+            <ImageButton
+                android:id="@+id/btn_itemmain_refresh"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_margin="5dp"
+                android:adjustViewBounds="true"
+                android:background="@android:color/transparent"
+                android:padding="5dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_baseline_refresh_24"
+                app:layout_constraintBottom_toBottomOf="@id/tv_itemmain_location"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_itemmain_location" />
+
+
+            <TextView
+                android:id="@+id/tv_itemmain_temperaturenow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{vm.kmaWeather.channel.item.description.body.data[0].temp}"
+                android:textSize="80sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_itemmain_location" />
+
+            <TextView
+                android:id="@+id/tv_itemmain_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@{vm.kmaWeather.channel.item.description.body.data[0].wfKor}"
+                android:textSize="40sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_itemmain_temperaturenow"
+                app:layout_constraintStart_toEndOf="@id/tv_itemmain_temperaturenow"
+                app:layout_constraintTop_toTopOf="@id/tv_itemmain_temperaturenow" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tv_itemmain_temperaturenow">
+
+                <LinearLayout
+                    android:id="@+id/ll_itammain_temperatureperhour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" />
+
+            </HorizontalScrollView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

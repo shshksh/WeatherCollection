@@ -1,6 +1,6 @@
 package com.mob.weathercollection.util;
 
-import com.mob.weathercollection.model.Weather;
+import com.mob.weathercollection.model.weather.Weather;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
