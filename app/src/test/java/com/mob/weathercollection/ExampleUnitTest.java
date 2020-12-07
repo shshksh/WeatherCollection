@@ -48,7 +48,7 @@ public class ExampleUnitTest {
                 System.out.println("no " + t.getMessage());
             }
         });
-        Thread.sleep(10000);
+        Thread.sleep(5000);
     }
 
     @Test
