@@ -47,4 +47,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.6.4'
     implementation 'com.squareup.retrofit2:converter-scalars:2.6.4'
     implementation 'com.squareup.retrofit2:converter-simplexml:2.6.4'
+
+    // lifecycle
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata:2.2.0'
 }
