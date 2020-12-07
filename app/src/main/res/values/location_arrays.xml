@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="kma_location">
+        <item>부산광역시_2600000000</item>
+    </string-array>
+
+    <string-array name="부산광역시_2600000000">
+        <item>강서구_2644000000</item>
+        <item>금정구_2641000000</item>
+        <item>기장군_2671000000</item>
+        <item>남구_2629000000</item>
+        <item>동구_2617000000</item>
+        <item>동래구_2626000000</item>
+        <item>부산진구_2623000000</item>
+        <item>북구_2632000000</item>
+        <item>사상구_2653000000</item>
+        <item>사하구_2638000000</item>
+        <item>서구_2614000000</item>
+        <item>수영구_2650000000</item>
+        <item>연제구_2647000000</item>
+        <item>영도구_2620000000</item>
+        <item>중구_2611000000</item>
+        <item>해운대구_2635000000</item>
+    </string-array>
+
+    <string-array name="강서구_2644000000">
+        <item>가덕도동_2644058000</item>
+        <item>가락동_2644055000</item>
+        <item>강동동_2644053000</item>
+        <item>녹산동_2644056000</item>
+        <item>대저1동_2644051000</item>
+        <item>대저2동_2644052000</item>
+        <item>명지1동_2644053500</item>
+        <item>명지2동_2644054500</item>
+    </string-array>
+
+    <string-array name="금정구_2641000000">
+        <item>구서제1동_2641068000</item>
+        <item>구서제2동_2641069000</item>
+        <item>금사회동동_2641055500</item>
+        <item>금성동_2641070000</item>
+        <item>남산동_2641067000</item>
+        <item>부곡제1동_2641057000</item>
+        <item>부곡제2동_2641058000</item>
+        <item>부곡제3동_2641059000</item>
+        <item>부곡제4동_2641059100</item>
+        <item>서제1동_2641051000</item>
+        <item>서제2동_2641052000</item>
+        <item>서제3동_2641053000</item>
+        <item>선두구동_2641063500</item>
+        <item>장전제1동_2641060000</item>
+        <item>장전제2동_2641061000</item>
+        <item>청룡노포동_2641066500</item>
+    </string-array>
+
+    <string-array name="기장군_2671000000">
+        <item>기장읍_2671025000</item>
+        <item>일광면_2671031000</item>
+        <item>장안읍_2671025300</item>
+        <item>정관읍_2671025600</item>
+        <item>철마면_2671033000</item>
+    </string-array>
+
+    <string-array name="동구_2617000000">
+        <item>감만제1동_2629062000</item>
+        <item>감만제2동_2629063000</item>
+        <item>대연제1동_2629051000</item>
+        <item>대연제3동_2629053000</item>
+        <item>대연제4동_2629054000</item>
+        <item>대연제5동_2629055000</item>
+        <item>대연제6동_2629056000</item>
+        <item>문현제1동_2629068000</item>
+        <item>문현제2동_2629069000</item>
+        <item>문현제3동_2629070000</item>
+        <item>문현제4동_2629071000</item>
+        <item>용당동_2629061000</item>
+        <item>용호제1동_2629057000</item>
+        <item>용호제2동_2629058000</item>
+        <item>용호제3동_2629059000</item>
+        <item>용호제4동_2629060000</item>
+        <item>우암동_2629064500</item>
+    </string-array>
+
+    <string-array name="남구_2629000000">
+        <item>범일제1동_2617065000</item>
+        <item>범일제2동_2617066000</item>
+        <item>범일제5동_2617068000</item>
+        <item>수정제1동_2617056000</item>
+        <item>수정제2동_2617057000</item>
+        <item>수정제4동_2617059000</item>
+        <item>수정제5동_2617060000</item>
+        <item>좌천동_2617064500</item>
+        <item>초량제1동_2617051000</item>
+        <item>초량제2동_2617052000</item>
+        <item>초량제3동_2617053000</item>
+        <item>초량제6동_2617055000</item>
+    </string-array>
+
+    <string-array name="동래구_2626000000">
+        <item>명륜동_2626054500</item>
+        <item>명장제1동_2626076100</item>
+        <item>명장제2동_2626076200</item>
+        <item>복산동_2626052000</item>
+        <item>사직제1동_2626058000</item>
+        <item>사직제2동_2626059000</item>
+        <item>사직제3동_2626060000</item>
+        <item>수민동_2626051000</item>
+        <item>안락제1동_2626074000</item>
+        <item>안락제2동_2626075000</item>
+        <item>온천제1동_2626055000</item>
+        <item>온천제2동_2626056000</item>
+        <item>온천제3동_2626057000</item>
+    </string-array>
+
+    <string-array name="부산진구_2623000000">
+        <item>가야제1동_2623071000</item>
+        <item>가야제2동_2623072000</item>
+        <item>개금제1동_2623074000</item>
+        <item>개금제2동_2623075000</item>
+        <item>개금제3동_2623076000</item>
+        <item>당감제1동_2623067000</item>
+        <item>당감제2동_2623068000</item>
+        <item>당감제4동_2623070000</item>
+        <item>범천제1동_2623077000</item>
+        <item>범천제2동_2623078000</item>
+        <item>부암제1동_2623064000</item>
+        <item>부암제3동_2623066000</item>
+        <item>부전제1동_2623051000</item>
+        <item>부전제2동_2623052000</item>
+        <item>양정제1동_2623056000</item>
+        <item>양정제2동_2623057000</item>
+        <item>연지동_2623054000</item>
+        <item>전포제1동_2623060000</item>
+        <item>전포제2동_2623061000</item>
+        <item>초읍동_2623055000</item>
+    </string-array>
+
+    <string-array name="북구_2632000000">
+        <item>구포제1동_2632051000</item>
+        <item>구포제2동_2632052000</item>
+        <item>구포제3동_2632052100</item>
+        <item>금곡동_2632053000</item>
+        <item>덕천제1동_2632055000</item>
+        <item>덕천제2동_2632056000</item>
+        <item>덕천제3동_2632056100</item>
+        <item>만덕제1동_2632057100</item>
+        <item>만덕제2동_2632057200</item>
+        <item>만덕제3동_2632057300</item>
+        <item>화명제1동_2632054100</item>
+        <item>화명제2동_2632054200</item>
+        <item>화명제3동_2632054300</item>
+    </string-array>
+
+    <string-array name="사상구_2653000000">
+        <item>감전동_2653064500</item>
+        <item>괘법동_2653062000</item>
+        <item>덕포제1동_2653060000</item>
+        <item>덕포제2동_2653061000</item>
+        <item>모라제1동_2653059100</item>
+        <item>모라제3동_2653059300</item>
+        <item>삼락동_2653058000</item>
+        <item>엄궁동_2653068000</item>
+        <item>주례제1동_2653065000</item>
+        <item>주례제2동_2653066000</item>
+        <item>주례제3동_2653066100</item>
+        <item>학장동_2653067000</item>
+    </string-array>
+
+    <string-array name="사하구_2638000000">
+        <item>감천제1동_2638062000</item>
+        <item>감천제2동_2638063000</item>
+        <item>괴정제1동_2638051000</item>
+        <item>괴정제2동_2638052000</item>
+        <item>괴정제3동_2638053000</item>
+        <item>괴정제4동_2638054000</item>
+        <item>구평동_2638061000</item>
+        <item>다대제1동_2638060100</item>
+        <item>다대제2동_2638060200</item>
+        <item>당리동_2638055000</item>
+        <item>신평제1동_2638057100</item>
+        <item>신평제2동_2638057200</item>
+        <item>장림제1동_2638058000</item>
+        <item>장림제2동_2638059000</item>
+        <item>하단제1동_2638056100</item>
+        <item>하단제2동_2638056200</item>
+    </string-array>
+
+    <string-array name="서구_2614000000">
+        <item>남부민제1동_2614065000</item>
+        <item>남부민제2동_2614066000</item>
+        <item>동대신제1동_2614051000</item>
+        <item>동대신제2동_2614052000</item>
+        <item>동대신제3동_2614053000</item>
+        <item>부민동_2614059000</item>
+        <item>서대신제1동_2614054000</item>
+        <item>서대신제3동_2614056000</item>
+        <item>서대신제4동_2614057000</item>
+        <item>아미동_2614061500</item>
+        <item>암남동_2614068000</item>
+        <item>초장동_2614063000</item>
+        <item>충무동_2614064000</item>
+    </string-array>
+
+    <string-array name="수영구_2650000000">
+        <item>광안제1동_2650076000</item>
+        <item>광안제2동_2650077000</item>
+        <item>광안제3동_2650078000</item>
+        <item>광안제4동_2650079000</item>
+        <item>남천제1동_2650066000</item>
+        <item>남천제2동_2650067000</item>
+        <item>망미제1동_2650074000</item>
+        <item>망미제2동_2650075000</item>
+        <item>민락동_2650080000</item>
+        <item>수영동_2650073000</item>
+    </string-array>
+
+    <string-array name="연제구_2647000000">
+        <item>거제제1동_2647061000</item>
+        <item>거제제2동_2647062000</item>
+        <item>거제제3동_2647063000</item>
+        <item>거제제4동_2647064000</item>
+        <item>연산제1동_2647065000</item>
+        <item>연산제2동_2647066000</item>
+        <item>연산제3동_2647067000</item>
+        <item>연산제4동_2647068000</item>
+        <item>연산제5동_2647069000</item>
+        <item>연산제6동_2647070000</item>
+        <item>연산제8동_2647072000</item>
+        <item>연산제9동_2647073000</item>
+    </string-array>
+
+    <string-array name="영도구_2620000000">
+        <item>남항동_2620053000</item>
+        <item>동삼제1동_2620065000</item>
+        <item>동삼제2동_2620066000</item>
+        <item>동삼제3동_2620067000</item>
+        <item>봉래제1동_2620059000</item>
+        <item>봉래제2동_2620060500</item>
+        <item>신선동_2620058500</item>
+        <item>영선제1동_2620054000</item>
+        <item>영선제2동_2620055000</item>
+        <item>청학제1동_2620063000</item>
+        <item>청학제2동_2620064000</item>
+    </string-array>
+
+    <string-array name="중구_2611000000">
+        <item>광복동_2611057000</item>
+        <item>남포동_2611058000</item>
+        <item>대청동_2611053000</item>
+        <item>동광동_2611052000</item>
+        <item>보수동_2611054500</item>
+        <item>부평동_2611056000</item>
+        <item>영주제1동_2611059000</item>
+        <item>영주제2동_2611060000</item>
+        <item>중앙동_2611051000</item>
+    </string-array>
+
+    <string-array name="해운대구_2635000000">
+        <item>반송제1동_2635061000</item>
+        <item>반송제2동_2635062000</item>
+        <item>반여제1동_2635057000</item>
+        <item>반여제2동_2635058000</item>
+        <item>반여제3동_2635059000</item>
+        <item>반여제4동_2635059500</item>
+        <item>송정동_2635056000</item>
+        <item>우제1동_2635051000</item>
+        <item>우제2동_2635052000</item>
+        <item>우제3동_2635052500</item>
+        <item>재송제1동_2635065000</item>
+        <item>재송제2동_2635066000</item>
+        <item>좌제1동_2635055100</item>
+        <item>좌제2동_2635055200</item>
+        <item>좌제3동_2635055300</item>
+        <item>좌제4동_2635055400</item>
+        <item>중제1동_2635053000</item>
+        <item>중제2동_2635054000</item>
+    </string-array>
+</resources>
