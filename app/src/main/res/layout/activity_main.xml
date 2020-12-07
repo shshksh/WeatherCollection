@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="weather"
-            type="com.mob.weathercollection.model.weather.Weather" />
+            name="vm"
+            type="com.mob.weathercollection.MainViewModel" />
     </data>
 
     <ScrollView
@@ -23,7 +23,7 @@
             <include
                 android:id="@+id/layout_kma"
                 layout="@layout/item_main"
-                bind:weather="@{weather}" />
+                bind:vm="@{vm}" />
 
             <include
                 android:id="@+id/layout_naver"

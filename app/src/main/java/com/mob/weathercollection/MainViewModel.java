@@ -2,6 +2,7 @@ package com.mob.weathercollection;
 
 import android.util.Log;
 
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.mob.weathercollection.model.weather.Weather;
@@ -13,10 +14,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainViewModel extends ViewModel {
-    private Weather kmaWeather;
+    private MutableLiveData<Weather> kmaWeather;
 
-    public Weather getKmaWeather() {
+    public MutableLiveData<Weather> getKmaWeather() {
         if (kmaWeather == null) {
+            kmaWeather = new MutableLiveData<Weather>();
             loadWeather("2644000000");
         }
         return kmaWeather;
@@ -33,10 +35,11 @@ public class MainViewModel extends ViewModel {
                 if (response.isSuccessful()) {
                     Log.d("KMA request", "isSuccessful " + response.message());
                     Log.d("KMA request", response.body().toString());
-                    kmaWeather = response.body();
-                    kmaWeather.src = "기상청";
-                    String[] locationParts = kmaWeather.channel.item.category.split(" ");
-                    kmaWeather.channel.item.category = locationParts[locationParts.length - 1];
+                    Weather weather = response.body();
+                    weather.src = "기상청";
+                    String[] locationParts = weather.channel.item.category.split(" ");
+                    weather.channel.item.category = locationParts[locationParts.length - 1];
+                    kmaWeather.setValue(weather);
                 }
             }
 

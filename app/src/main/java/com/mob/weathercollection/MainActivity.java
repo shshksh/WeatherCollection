@@ -16,9 +16,9 @@ public class MainActivity extends AppCompatActivity {
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         MainViewModel mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
-        binding.setWeather(mainViewModel.getKmaWeather());
+        binding.setLifecycleOwner(this);
+        binding.setVm(mainViewModel);
 
-        binding.layoutKma.btnItemmainRefresh.setOnClickListener(view -> binding.setWeather(mainViewModel.getKmaWeather()));
 //        LinearLayout llItemMain = binding.layoutKma.llItammainTemperatureperhour;
 //        View itemTemp = getLayoutInflater().inflate(R.layout.item_tempperhours, llItemMain, false);
 //        llItemMain.addView(itemTemp);
