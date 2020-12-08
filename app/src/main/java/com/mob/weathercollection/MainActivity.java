@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
@@ -48,6 +49,17 @@ public class MainActivity extends AppCompatActivity {
             itemBinding.tvItemtempperhoursHour.setText("" + temp.hour);
             Log.d("Add kma item: layout", itemBinding.tvItemtempperhoursTemp.getText().toString() + " " + itemBinding.tvItemtempperhoursHour.getText().toString());
             itemLayout.addView(itemBinding.getRoot());
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d(this.getClass().getSimpleName(), "onActivityResult");
+        if (resultCode == RESULT_OK && requestCode == CHOOSE_LOCATION_REQUEST) {
+            String locationCode = data.getStringExtra("locationCode");
+            Log.d(this.getClass().getSimpleName(), "onActivityResult: " + locationCode);
+            mainViewModel.loadWeather(locationCode);
         }
     }
 }

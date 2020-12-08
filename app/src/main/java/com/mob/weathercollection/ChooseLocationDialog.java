@@ -42,7 +42,11 @@ public class ChooseLocationDialog extends BottomSheetDialogFragment {
         try {
             Field field = R.array.class.getField(selectType);
             String[] itemsArray = getResources().getStringArray(field.getInt(null));
-            builder.setItems(itemsArray, (dialogInterface, i) -> {
+            String[] ShowArray = new String[itemsArray.length];
+            for (int i = 0; i < itemsArray.length; i++) {
+                ShowArray[i] = itemsArray[i].split("_")[0];
+            }
+            builder.setItems(ShowArray, (dialogInterface, i) -> {
                 listener.onDialogClick(requestView, itemsArray[i]);
             });
         } catch (NoSuchFieldException | IllegalAccessException e) {

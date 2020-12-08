@@ -62,6 +62,21 @@
     </string-array>
 
     <string-array name="동구_2617000000">
+        <item>범일제1동_2617065000</item>
+        <item>범일제2동_2617066000</item>
+        <item>범일제5동_2617068000</item>
+        <item>수정제1동_2617056000</item>
+        <item>수정제2동_2617057000</item>
+        <item>수정제4동_2617059000</item>
+        <item>수정제5동_2617060000</item>
+        <item>좌천동_2617064500</item>
+        <item>초량제1동_2617051000</item>
+        <item>초량제2동_2617052000</item>
+        <item>초량제3동_2617053000</item>
+        <item>초량제6동_2617055000</item>
+    </string-array>
+
+    <string-array name="남구_2629000000">
         <item>감만제1동_2629062000</item>
         <item>감만제2동_2629063000</item>
         <item>대연제1동_2629051000</item>
@@ -79,21 +94,6 @@
         <item>용호제3동_2629059000</item>
         <item>용호제4동_2629060000</item>
         <item>우암동_2629064500</item>
-    </string-array>
-
-    <string-array name="남구_2629000000">
-        <item>범일제1동_2617065000</item>
-        <item>범일제2동_2617066000</item>
-        <item>범일제5동_2617068000</item>
-        <item>수정제1동_2617056000</item>
-        <item>수정제2동_2617057000</item>
-        <item>수정제4동_2617059000</item>
-        <item>수정제5동_2617060000</item>
-        <item>좌천동_2617064500</item>
-        <item>초량제1동_2617051000</item>
-        <item>초량제2동_2617052000</item>
-        <item>초량제3동_2617053000</item>
-        <item>초량제6동_2617055000</item>
     </string-array>
 
     <string-array name="동래구_2626000000">

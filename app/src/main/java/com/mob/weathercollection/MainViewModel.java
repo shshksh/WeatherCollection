@@ -24,7 +24,7 @@ public class MainViewModel extends ViewModel {
         return kmaWeather;
     }
 
-    private void loadWeather(String location) {
+    public void loadWeather(String location) {
         KmaService kmaService = RetrofitImpl.getKmaService();
 
         Call<Weather> weather = kmaService.getWeather(location);
