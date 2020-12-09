@@ -23,11 +23,12 @@
             <include
                 android:id="@+id/layout_kma"
                 layout="@layout/item_main"
-                bind:vm="@{vm}" />
+                bind:weather="@{vm.kmaWeather}" />
 
             <include
                 android:id="@+id/layout_naver"
-                layout="@layout/item_main" />
+                layout="@layout/item_main"
+                bind:weather="@{vm.naverWeather}" />
 
             <include
                 android:id="@+id/layout_openweather"
