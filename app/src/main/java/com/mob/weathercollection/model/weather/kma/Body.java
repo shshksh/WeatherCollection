@@ -1,4 +1,4 @@
-package com.mob.weathercollection.model.weather;
+package com.mob.weathercollection.model.weather.kma;
 
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;

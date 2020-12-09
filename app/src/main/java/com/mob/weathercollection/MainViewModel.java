@@ -5,7 +5,7 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.mob.weathercollection.model.weather.Weather;
+import com.mob.weathercollection.model.weather.kma.KmaWeather;
 import com.mob.weathercollection.util.KmaService;
 import com.mob.weathercollection.util.RetrofitImpl;
 
@@ -14,11 +14,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainViewModel extends ViewModel {
-    private MutableLiveData<Weather> kmaWeather;
+    private MutableLiveData<KmaWeather> kmaWeather;
 
-    public MutableLiveData<Weather> getKmaWeather() {
+    public MutableLiveData<KmaWeather> getKmaWeather() {
         if (kmaWeather == null) {
-            kmaWeather = new MutableLiveData<Weather>();
+            kmaWeather = new MutableLiveData<KmaWeather>();
             loadWeather("2644000000");
         }
         return kmaWeather;
@@ -27,24 +27,23 @@ public class MainViewModel extends ViewModel {
     public void loadWeather(String location) {
         KmaService kmaService = RetrofitImpl.getKmaService();
 
-        Call<Weather> weather = kmaService.getWeather(location);
-        weather.enqueue(new Callback<Weather>() {
+        Call<KmaWeather> weather = kmaService.getWeather(location);
+        weather.enqueue(new Callback<KmaWeather>() {
             @Override
-            public void onResponse(Call<Weather> call, Response<Weather> response) {
+            public void onResponse(Call<KmaWeather> call, Response<KmaWeather> response) {
                 Log.d("KMA request", "OnResponse");
                 if (response.isSuccessful()) {
                     Log.d("KMA request", "isSuccessful " + response.message());
                     Log.d("KMA request", response.body().toString());
-                    Weather weather = response.body();
-                    weather.src = "기상청";
-                    String[] locationParts = weather.channel.item.category.split(" ");
-                    weather.channel.item.category = locationParts[locationParts.length - 1];
-                    kmaWeather.setValue(weather);
+                    KmaWeather kmaWeather = response.body();
+                    String[] locationParts = kmaWeather.channel.item.category.split(" ");
+                    kmaWeather.channel.item.category = locationParts[locationParts.length - 1];
+                    MainViewModel.this.kmaWeather.setValue(kmaWeather);
                 }
             }
 
             @Override
-            public void onFailure(Call<Weather> call, Throwable t) {
+            public void onFailure(Call<KmaWeather> call, Throwable t) {
                 Log.d("KMA request", t.getMessage());
             }
         });

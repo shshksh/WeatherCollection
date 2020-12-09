@@ -1,6 +1,6 @@
 package com.mob.weathercollection.util;
 
-import com.mob.weathercollection.model.weather.Weather;
+import com.mob.weathercollection.model.weather.kma.KmaWeather;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -8,5 +8,5 @@ import retrofit2.http.Query;
 
 public interface KmaService {
     @GET("/wid/queryDFSRSS.jsp")
-    Call<Weather> getWeather(@Query("zone") String locationCode);
+    Call<KmaWeather> getWeather(@Query("zone") String locationCode);
 }

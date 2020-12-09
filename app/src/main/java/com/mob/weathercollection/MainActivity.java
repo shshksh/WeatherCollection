@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.mob.weathercollection.databinding.ActivityMainBinding;
 import com.mob.weathercollection.databinding.ItemTempperhoursBinding;
-import com.mob.weathercollection.model.weather.Data;
+import com.mob.weathercollection.model.weather.kma.Data;
 
 import java.util.List;
 
