@@ -1,6 +1,7 @@
 package com.mob.weathercollection;
 
-import com.mob.weathercollection.model.weather.Weather;
+
+import com.mob.weathercollection.model.kma.KmaWeather;
 import com.mob.weathercollection.util.KmaService;
 import com.mob.weathercollection.util.RetrofitImpl;
 
@@ -29,10 +30,10 @@ public class ExampleUnitTest {
     public void kma_request_test() throws IOException, InterruptedException {
         KmaService kmaService = RetrofitImpl.getKmaService();
 
-        Call<Weather> weather = kmaService.getWeather("2647070000");
-        weather.enqueue(new Callback<Weather>() {
+        Call<KmaWeather> weather = kmaService.getWeather("2647070000");
+        weather.enqueue(new Callback<KmaWeather>() {
             @Override
-            public void onResponse(Call<Weather> call, Response<Weather> response) {
+            public void onResponse(Call<KmaWeather> call, Response<KmaWeather> response) {
                 System.out.println("yes");
                 if (response.isSuccessful()) {
                     System.out.println(response.message());
@@ -42,7 +43,7 @@ public class ExampleUnitTest {
             }
 
             @Override
-            public void onFailure(Call<Weather> call, Throwable t) {
+            public void onFailure(Call<KmaWeather> call, Throwable t) {
                 System.out.println("no " + t.getMessage());
             }
         });
