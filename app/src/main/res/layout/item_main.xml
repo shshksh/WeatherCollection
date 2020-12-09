@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="vm"
-            type="com.mob.weathercollection.MainViewModel" />
+            name="weather"
+            type="com.mob.weathercollection.model.weather.Weather" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -26,7 +26,7 @@
                 android:id="@+id/tv_itemmain_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{vm.kmaWeather.channel.item.category}"
+                android:text="@{weather.location}"
                 android:textSize="40sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -36,6 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
+                android:text="@{weather.dataSource}"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@id/tv_itemmain_location"
                 app:layout_constraintStart_toEndOf="@id/tv_itemmain_location" />
@@ -73,7 +74,7 @@
                 android:id="@+id/tv_itemmain_temperaturenow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{vm.kmaWeather.channel.item.description.body.data[0].temp}"
+                android:text="@{weather.mainTemp}"
                 android:textSize="80sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_itemmain_location" />
@@ -83,7 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="@{vm.kmaWeather.channel.item.description.body.data[0].wfKor}"
+                android:text="@{weather.description}"
                 android:textSize="40sp"
                 app:layout_constraintBottom_toBottomOf="@id/tv_itemmain_temperaturenow"
                 app:layout_constraintStart_toEndOf="@id/tv_itemmain_temperaturenow"

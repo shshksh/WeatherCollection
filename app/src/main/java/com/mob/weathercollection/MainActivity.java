@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.mob.weathercollection.databinding.ActivityMainBinding;
 import com.mob.weathercollection.databinding.ItemTempperhoursBinding;
-import com.mob.weathercollection.model.weather.kma.Data;
+import com.mob.weathercollection.model.weather.TempPerHour;
 
 import java.util.List;
 
@@ -36,18 +36,16 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(intent, CHOOSE_LOCATION_REQUEST);
         });
 
-        mainViewModel.getKmaWeather().observe(this, weather -> addTempItems(weather.channel.item.description.body.data));
+        mainViewModel.getKmaWeather().observe(this, weather -> addTempItems(binding.layoutKma.llItammainTemperatureperhour, weather.getTempList()));
+        mainViewModel.getNaverWeather().observe(this, weather -> addTempItems(binding.layoutNaver.llItammainTemperatureperhour, weather.getTempList()));
     }
 
-    private void addTempItems(List<Data> temps) {
-        LinearLayout itemLayout = binding.layoutKma.llItammainTemperatureperhour;
+    private void addTempItems(LinearLayout itemLayout, List<TempPerHour> tempList) {
         itemLayout.removeAllViews();
-        for (Data temp : temps) {
+        for (TempPerHour temp : tempList) {
             @NonNull ItemTempperhoursBinding itemBinding = ItemTempperhoursBinding.inflate(getLayoutInflater(), itemLayout, false);
-            Log.d("Add kma item: data", temp.temp + " " + temp.hour);
-            itemBinding.tvItemtempperhoursTemp.setText(temp.temp);
-            itemBinding.tvItemtempperhoursHour.setText("" + temp.hour);
-            Log.d("Add kma item: layout", itemBinding.tvItemtempperhoursTemp.getText().toString() + " " + itemBinding.tvItemtempperhoursHour.getText().toString());
+            itemBinding.tvItemtempperhoursTemp.setText(temp.getTemp());
+            itemBinding.tvItemtempperhoursHour.setText(temp.getHour());
             itemLayout.addView(itemBinding.getRoot());
         }
     }
@@ -59,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK && requestCode == CHOOSE_LOCATION_REQUEST) {
             String locationCode = data.getStringExtra("locationCode");
             Log.d(this.getClass().getSimpleName(), "onActivityResult: " + locationCode);
-            mainViewModel.loadWeather(locationCode);
+            mainViewModel.loadWeatherFromKma(locationCode);
         }
     }
 }
