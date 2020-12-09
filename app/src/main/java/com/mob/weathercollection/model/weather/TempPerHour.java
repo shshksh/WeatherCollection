@@ -2,9 +2,14 @@ package com.mob.weathercollection.model.weather;
 
 public class TempPerHour {
     private String temp;
-    private int hour;
+    private String hour;
 
     public TempPerHour(String temp, int hour) {
+        this.temp = temp;
+        this.hour = Integer.toString(hour);
+    }
+
+    public TempPerHour(String temp, String hour) {
         this.temp = temp;
         this.hour = hour;
     }
@@ -13,7 +18,7 @@ public class TempPerHour {
         return temp;
     }
 
-    public int getHour() {
+    public String getHour() {
         return hour;
     }
 

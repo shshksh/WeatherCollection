@@ -1,7 +1,7 @@
 package com.mob.weathercollection;
 
 
-import com.mob.weathercollection.model.kma.KmaWeather;
+import com.mob.weathercollection.model.weather.kma.KmaWeather;
 import com.mob.weathercollection.util.KmaService;
 import com.mob.weathercollection.util.RetrofitImpl;
 
