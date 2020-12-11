@@ -66,18 +66,18 @@ public class MainViewModel extends ViewModel {
 
                     Elements items = todayArea.select("div.table_info div.info_list.weather_condition._tabContent ul.list_area li dl");
                     Elements temps = items.select("dd.weather_item span:not(.blind):not(.dot_point)");
-                    Elements hours = items.select("dd.item_time span:not(.tomorrow):not(.division_line):not(.tomorrow_icon):not(.blind)");
+                    Elements hours = items.select("dd.item_time span:not(.tomorrow):not(.division_line):not(.tomorrow_icon):not(.blind):not(.more_bytime):not(.ico)");
 
                     String description = castTxt.text();
                     description = description.split(", ")[0];
 
                     List<TempPerHour> tempPerHourList = new ArrayList<>();
                     Log.d("query", "doInBackground: test");
-                    for (int i = 0; i < hours.size(); i++) {
+                    for (int i = 0; i < temps.size(); i++) {
                         tempPerHourList.add(new TempPerHour(temps.get(i).text(), hours.get(i).text()));
                         Log.d("query", "doInBackground: " + tempPerHourList.get(i).toString());
                     }
-                    Weather naverWeather = new Weather("연산6동", "네이버 날씨", todayTemp.text(), description, tempPerHourList);
+                    Weather naverWeather = new Weather(strings[0], "네이버", todayTemp.text(), description, tempPerHourList);
 
                     return naverWeather;
                 } catch (IOException e) {
