@@ -32,7 +32,8 @@
 
             <include
                 android:id="@+id/layout_openweather"
-                layout="@layout/item_main" />
+                layout="@layout/item_main"
+                bind:weather="@{vm.openWeather}" />
 
         </LinearLayout>
 
