@@ -13,7 +13,6 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.Assert.*;
 
 public class CrawlingTest {
     @Test
@@ -38,11 +37,11 @@ public class CrawlingTest {
 
     @Test
     public void getTempsPerHour() throws IOException {
-        Document doc = Jsoup.connect("https://search.naver.com/search.naver?query=연산+6동+날씨").get();
+        Document doc = Jsoup.connect("https://search.naver.com/search.naver?query=부산+강서구+날씨").get();
         Elements infoList = doc.select("div.today_area div.table_info div.info_list.weather_condition._tabContent");
         Elements items = infoList.select("ul.list_area li dl");
         Elements temps = items.select("dd.weather_item span:not(.blind):not(.dot_point)");
-        Elements hours = items.select("dd.item_time span:not(.tomorrow):not(.division_line):not(.tomorrow_icon):not(.blind)");
+        Elements hours = items.select("dd.item_time span:not(.tomorrow):not(.division_line):not(.tomorrow_icon):not(.blind):not(.more_bytime):not(.ico)");
 
         for (int i = 0; i < hours.size(); i++) {
             System.out.println(hours.get(i) + " " + temps.get(i));

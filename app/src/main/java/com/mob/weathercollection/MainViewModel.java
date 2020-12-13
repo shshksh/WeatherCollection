@@ -8,8 +8,13 @@ import androidx.lifecycle.ViewModel;
 
 import com.mob.weathercollection.model.weather.TempPerHour;
 import com.mob.weathercollection.model.weather.Weather;
+import com.mob.weathercollection.model.weather.kakao.Coordinate;
+import com.mob.weathercollection.model.weather.kakao.Documents;
 import com.mob.weathercollection.model.weather.kma.KmaWeather;
+import com.mob.weathercollection.model.weather.openweather.OpenWeather;
+import com.mob.weathercollection.util.KakaoService;
 import com.mob.weathercollection.util.KmaService;
+import com.mob.weathercollection.util.OpenWeatherService;
 import com.mob.weathercollection.util.RetrofitImpl;
 
 import org.jsoup.Jsoup;
@@ -28,6 +33,7 @@ import retrofit2.Response;
 public class MainViewModel extends ViewModel {
     private MutableLiveData<Weather> kmaWeather;
     private MutableLiveData<Weather> naverWeather;
+    private MutableLiveData<Weather> openWeather;
 
     public MutableLiveData<Weather> getKmaWeather() {
         if (kmaWeather == null) {
@@ -45,8 +51,59 @@ public class MainViewModel extends ViewModel {
         return naverWeather;
     }
 
+    public MutableLiveData<Weather> getOpenWeather() {
+        if (openWeather == null) {
+            openWeather = new MutableLiveData<>();
+            loadWeatherFromOpenWeather("부산 강서구");
+        }
+        return openWeather;
+    }
+
+    private void loadWeatherFromOpenWeather(String location) {
+        KakaoService kakaoService = RetrofitImpl.getKakaoService();
+        Call<Coordinate> coordinateCall = kakaoService.getCoordinate(location);
+
+        OpenWeatherService openWeatherService = RetrofitImpl.getOpenWeatherService();
+
+        coordinateCall.enqueue(new Callback<Coordinate>() {
+            @Override
+            public void onResponse(Call<Coordinate> call, Response<Coordinate> response) {
+                if (response.isSuccessful()) {
+                    Coordinate coordinate = response.body();
+                    Documents documents = coordinate.documents.get(0);
+
+                    String[] parts = documents.address_name.split(" ");
+
+                    Call<OpenWeather> openWeatherCall = openWeatherService.getOpenWeather(documents.y, documents.x, "bd334a07508a1d0a9fd754fb6b0aca99");
+
+                    openWeatherCall.enqueue(new Callback<OpenWeather>() {
+                        @Override
+                        public void onResponse(Call<OpenWeather> call, Response<OpenWeather> response) {
+                            if (response.isSuccessful()) {
+                                OpenWeather responseWeather = response.body();
+                                Weather weather = new Weather(responseWeather, parts[parts.length - 1]);
+                                getOpenWeather().setValue(weather);
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<OpenWeather> call, Throwable t) {
+                            Log.d("open weather map", t.getMessage());
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Coordinate> call, Throwable t) {
+                Log.d("kakao address search", t.getMessage());
+            }
+        });
+    }
+
     private void loadWeatherFromNaver(String location) {
         String[] tokens = location.split(" ");
+        location = tokens[tokens.length - 1];
         String query = tokens[0];
         for (int i = 1; i < tokens.length; i++) {
             query += "+" + tokens[i];
@@ -66,18 +123,18 @@ public class MainViewModel extends ViewModel {
 
                     Elements items = todayArea.select("div.table_info div.info_list.weather_condition._tabContent ul.list_area li dl");
                     Elements temps = items.select("dd.weather_item span:not(.blind):not(.dot_point)");
-                    Elements hours = items.select("dd.item_time span:not(.tomorrow):not(.division_line):not(.tomorrow_icon):not(.blind)");
+                    Elements hours = items.select("dd.item_time span:not(.tomorrow):not(.division_line):not(.tomorrow_icon):not(.blind):not(.more_bytime):not(.ico)");
 
                     String description = castTxt.text();
                     description = description.split(", ")[0];
 
                     List<TempPerHour> tempPerHourList = new ArrayList<>();
                     Log.d("query", "doInBackground: test");
-                    for (int i = 0; i < hours.size(); i++) {
+                    for (int i = 0; i < temps.size(); i++) {
                         tempPerHourList.add(new TempPerHour(temps.get(i).text(), hours.get(i).text()));
                         Log.d("query", "doInBackground: " + tempPerHourList.get(i).toString());
                     }
-                    Weather naverWeather = new Weather("연산6동", "네이버 날씨", todayTemp.text(), description, tempPerHourList);
+                    Weather naverWeather = new Weather(strings[1], "네이버", todayTemp.text(), description, tempPerHourList);
 
                     return naverWeather;
                 } catch (IOException e) {
@@ -91,7 +148,7 @@ public class MainViewModel extends ViewModel {
                 super.onPostExecute(weather);
                 naverWeather.setValue(weather);
             }
-        }.execute(query);
+        }.execute(query, location);
     }
 
     public void loadWeatherFromKma(String location) {

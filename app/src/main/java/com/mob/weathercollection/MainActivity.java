@@ -36,14 +36,22 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(intent, CHOOSE_LOCATION_REQUEST);
         });
 
-        mainViewModel.getKmaWeather().observe(this, weather -> addTempItems(binding.layoutKma.llItammainTemperatureperhour, weather.getTempList()));
-        mainViewModel.getNaverWeather().observe(this, weather -> addTempItems(binding.layoutNaver.llItammainTemperatureperhour, weather.getTempList()));
+        mainViewModel.getKmaWeather().observe(this,
+                weather -> addTempItems(binding.layoutKma.llItammainTemperatureperhour,
+                        weather.getTempList()));
+        mainViewModel.getNaverWeather().observe(this,
+                weather -> addTempItems(binding.layoutNaver.llItammainTemperatureperhour,
+                        weather.getTempList()));
+        mainViewModel.getOpenWeather().observe(this,
+                weather -> addTempItems(binding.layoutOpenweather.llItammainTemperatureperhour,
+                        weather.getTempList()));
     }
 
     private void addTempItems(LinearLayout itemLayout, List<TempPerHour> tempList) {
         itemLayout.removeAllViews();
         for (TempPerHour temp : tempList) {
-            @NonNull ItemTempperhoursBinding itemBinding = ItemTempperhoursBinding.inflate(getLayoutInflater(), itemLayout, false);
+            @NonNull ItemTempperhoursBinding itemBinding =
+                    ItemTempperhoursBinding.inflate(getLayoutInflater(), itemLayout, false);
             itemBinding.tvItemtempperhoursTemp.setText(temp.getTemp());
             itemBinding.tvItemtempperhoursHour.setText(temp.getHour());
             itemLayout.addView(itemBinding.getRoot());
