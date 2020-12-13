@@ -15,11 +15,20 @@ public class RetrofitImpl {
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
+    private static Retrofit openWeatherService = new Retrofit.Builder()
+            .baseUrl("https://api.openweathermap.org")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
+
     public static KmaService getKmaService() {
         return kmaRetrofit.create(KmaService.class);
     }
 
     public static KakaoService getKakaoService() {
         return kakaoRetrofit.create(KakaoService.class);
+    }
+
+    public static OpenWeatherService getOpenWeatherService() {
+        return openWeatherService.create(OpenWeatherService.class);
     }
 }
