@@ -31,14 +31,32 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainViewModel extends ViewModel {
+    private MutableLiveData<String> locationName = new MutableLiveData<>();
+    private String locationCode;
     private MutableLiveData<Weather> kmaWeather;
     private MutableLiveData<Weather> naverWeather;
     private MutableLiveData<Weather> openWeather;
 
+    public void setLocation(String location) {
+        Log.d("setLocation", location);
+        String[] parts = location.split("_");
+        if (!parts[0].equals("부산광역시")) {
+            locationName.setValue("부산 " + parts[0]);
+        } else {
+            locationName.setValue(parts[0]);
+        }
+        locationCode = parts[1];
+        Log.d("setLocation", locationName.getValue());
+    }
+
+    public MutableLiveData<String> getLocationName() {
+        return locationName;
+    }
+
     public MutableLiveData<Weather> getKmaWeather() {
         if (kmaWeather == null) {
             kmaWeather = new MutableLiveData<>();
-            loadWeatherFromKma("2644000000");
+            loadWeatherFromKma(locationCode);
         }
         return kmaWeather;
     }
@@ -46,7 +64,7 @@ public class MainViewModel extends ViewModel {
     public MutableLiveData<Weather> getNaverWeather() {
         if (naverWeather == null) {
             naverWeather = new MutableLiveData<>();
-            loadWeatherFromNaver("부산 강서구");
+            loadWeatherFromNaver(locationName.getValue());
         }
         return naverWeather;
     }
@@ -54,9 +72,16 @@ public class MainViewModel extends ViewModel {
     public MutableLiveData<Weather> getOpenWeather() {
         if (openWeather == null) {
             openWeather = new MutableLiveData<>();
-            loadWeatherFromOpenWeather("부산 강서구");
+            loadWeatherFromOpenWeather(locationName.getValue());
         }
         return openWeather;
+    }
+
+    public void refreshAllWeather() {
+        Log.d("mainViewModel", "refresh all weather");
+        loadWeatherFromKma(locationCode);
+        loadWeatherFromNaver(locationName.getValue());
+        loadWeatherFromOpenWeather(locationName.getValue());
     }
 
     private void loadWeatherFromOpenWeather(String location) {
@@ -74,14 +99,18 @@ public class MainViewModel extends ViewModel {
 
                     String[] parts = documents.address_name.split(" ");
 
-                    Call<OpenWeather> openWeatherCall = openWeatherService.getOpenWeather(documents.y, documents.x, "bd334a07508a1d0a9fd754fb6b0aca99");
+                    Call<OpenWeather> openWeatherCall =
+                            openWeatherService.getOpenWeather(documents.y, documents.x,
+                                    "bd334a07508a1d0a9fd754fb6b0aca99");
 
                     openWeatherCall.enqueue(new Callback<OpenWeather>() {
                         @Override
-                        public void onResponse(Call<OpenWeather> call, Response<OpenWeather> response) {
+                        public void onResponse(Call<OpenWeather> call,
+                                               Response<OpenWeather> response) {
                             if (response.isSuccessful()) {
                                 OpenWeather responseWeather = response.body();
-                                Weather weather = new Weather(responseWeather, parts[parts.length - 1]);
+                                Weather weather = new Weather(responseWeather,
+                                        parts[parts.length - 1]);
                                 getOpenWeather().setValue(weather);
                             }
                         }
@@ -114,16 +143,21 @@ public class MainViewModel extends ViewModel {
             protected Weather doInBackground(String... strings) {
                 Log.d("naver query", "doInBackground: " + strings[0] + "+날씨");
                 try {
-                    Document doc = Jsoup.connect("https://search.naver.com/search.naver?query=" + strings[0] + "+날씨").get();
+                    Document doc =
+                            Jsoup.connect("https://search.naver.com/search.naver?query=" + strings[0] + "+날씨").get();
                     Elements todayArea = doc.select("div.today_area");
 
                     Elements infoData = todayArea.select("div.main_info, div.info_data");
                     Element todayTemp = infoData.select("p.info_temperature span.todaytemp").get(0);
                     Element castTxt = infoData.select("ul.info_list li p.cast_txt").get(0);
 
-                    Elements items = todayArea.select("div.table_info div.info_list.weather_condition._tabContent ul.list_area li dl");
-                    Elements temps = items.select("dd.weather_item span:not(.blind):not(.dot_point)");
-                    Elements hours = items.select("dd.item_time span:not(.tomorrow):not(.division_line):not(.tomorrow_icon):not(.blind):not(.more_bytime):not(.ico)");
+                    Elements items = todayArea.select("div.table_info div.info_list" +
+                            ".weather_condition._tabContent ul.list_area li dl");
+                    Elements temps = items.select("dd.weather_item span:not(.blind):not(" +
+                            ".dot_point)");
+                    Elements hours = items.select("dd.item_time span:not(.tomorrow):not(" +
+                            ".division_line):not(.tomorrow_icon):not(.blind):not(.more_bytime)" +
+                            ":not(.ico)");
 
                     String description = castTxt.text();
                     description = description.split(", ")[0];
@@ -131,10 +165,12 @@ public class MainViewModel extends ViewModel {
                     List<TempPerHour> tempPerHourList = new ArrayList<>();
                     Log.d("query", "doInBackground: test");
                     for (int i = 0; i < temps.size(); i++) {
-                        tempPerHourList.add(new TempPerHour(temps.get(i).text(), hours.get(i).text()));
+                        tempPerHourList.add(new TempPerHour(temps.get(i).text() + ".0",
+                                hours.get(i).text().substring(0, 2)));
                         Log.d("query", "doInBackground: " + tempPerHourList.get(i).toString());
                     }
-                    Weather naverWeather = new Weather(strings[1], "네이버", todayTemp.text(), description, tempPerHourList);
+                    Weather naverWeather = new Weather(strings[1], "네이버", todayTemp.text() + ".0",
+                            description, tempPerHourList);
 
                     return naverWeather;
                 } catch (IOException e) {
