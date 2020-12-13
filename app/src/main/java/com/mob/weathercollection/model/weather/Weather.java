@@ -2,8 +2,12 @@ package com.mob.weathercollection.model.weather;
 
 import com.mob.weathercollection.model.weather.kma.Data;
 import com.mob.weathercollection.model.weather.kma.KmaWeather;
+import com.mob.weathercollection.model.weather.openweather.Hourly;
+import com.mob.weathercollection.model.weather.openweather.OpenWeather;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class Weather {
@@ -28,6 +32,25 @@ public class Weather {
         this.mainTemp = kmaWeather.channel.item.description.body.data.get(0).temp;
         this.description = kmaWeather.channel.item.description.body.data.get(0).wfKor;
         this.tempList = data2temp(kmaWeather.channel.item.description.body.data);
+    }
+
+    public Weather(OpenWeather openWeather, String location) {
+        this.location = location;
+        this.dataSource = "OpenWeatherMap";
+        this.mainTemp = openWeather.current.temp;
+        this.description = openWeather.current.weather.get(0).description;
+        this.tempList = hourly2temp(openWeather.hourly);
+    }
+
+    private List<TempPerHour> hourly2temp(List<Hourly> hourly) {
+        List<TempPerHour> tempList = new ArrayList<>();
+        for (Hourly hour : hourly) {
+            Date date = new Date(hour.dt * 1000);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            tempList.add(new TempPerHour(hour.temp, calendar.get(Calendar.HOUR_OF_DAY)));
+        }
+        return tempList;
     }
 
     private List<TempPerHour> data2temp(List<Data> dataList) {
