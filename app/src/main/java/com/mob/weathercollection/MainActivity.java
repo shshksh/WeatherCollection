@@ -1,8 +1,11 @@
 package com.mob.weathercollection;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -27,14 +30,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        mainViewModel.setLocation(getLocation());
 
         binding.setLifecycleOwner(this);
         binding.setVm(mainViewModel);
-
-        binding.layoutKma.btnItemmainChooselocation.setOnClickListener(view -> {
-            Intent intent = new Intent(this, ChooseLocationActivity.class);
-            startActivityForResult(intent, CHOOSE_LOCATION_REQUEST);
-        });
 
         mainViewModel.getKmaWeather().observe(this,
                 weather -> addTempItems(binding.layoutKma.llItammainTemperatureperhour,
@@ -45,6 +44,12 @@ public class MainActivity extends AppCompatActivity {
         mainViewModel.getOpenWeather().observe(this,
                 weather -> addTempItems(binding.layoutOpenweather.llItammainTemperatureperhour,
                         weather.getTempList()));
+    }
+
+    private String getLocation() {
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        String location = sharedPref.getString("location", "부산광역시_2600000000");
+        return location;
     }
 
     private void addTempItems(LinearLayout itemLayout, List<TempPerHour> tempList) {
@@ -58,14 +63,24 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void onChooseLocationClick(View view) {
+        Intent intent = new Intent(this, ChooseLocationActivity.class);
+        startActivityForResult(intent, CHOOSE_LOCATION_REQUEST);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Log.d(this.getClass().getSimpleName(), "onActivityResult");
         if (resultCode == RESULT_OK && requestCode == CHOOSE_LOCATION_REQUEST) {
-            String locationCode = data.getStringExtra("locationCode");
-            Log.d(this.getClass().getSimpleName(), "onActivityResult: " + locationCode);
-            mainViewModel.loadWeatherFromKma(locationCode);
+            String location = data.getStringExtra("location");
+            Log.d(this.getClass().getSimpleName(), "onActivityResult: " + location);
+            mainViewModel.setLocation(location);
+            SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString("location", location);
+            editor.apply();
+            mainViewModel.refreshAllWeather();
         }
     }
 }

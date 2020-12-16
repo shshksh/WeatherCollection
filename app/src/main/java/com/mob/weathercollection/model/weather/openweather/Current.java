@@ -3,7 +3,7 @@ package com.mob.weathercollection.model.weather.openweather;
 import java.util.List;
 
 public class Current {
-    public String temp;
+    public Double temp;
     public List<Description> weather;
 
     @Override
