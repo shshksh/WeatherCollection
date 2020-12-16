@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="location"
             type="String" />
@@ -30,9 +32,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{location}"
-                android:textSize="40sp"
+                android:textSize="35sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="location" />
 
             <TextView
                 android:id="@+id/tv_itemmain_src"
@@ -42,27 +45,32 @@
                 android:text="@{weather.dataSource}"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@id/tv_itemmain_location"
-                app:layout_constraintStart_toEndOf="@id/tv_itemmain_location" />
+                app:layout_constraintStart_toEndOf="@id/tv_itemmain_location"
+                tools:text="data source" />
 
             <TextView
                 android:id="@+id/tv_itemmain_temperaturenow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{weather.mainTemp}"
-                android:textSize="80sp"
+                android:text="@{weather.mainTemp + '℃'}"
+                android:textSize="70sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_itemmain_location" />
+                app:layout_constraintTop_toBottomOf="@id/tv_itemmain_location"
+                tools:text="temp℃" />
 
             <TextView
                 android:id="@+id/tv_itemmain_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:layout_marginStart="10dp"
+                android:gravity="center|left"
                 android:text="@{weather.description}"
-                android:textSize="40sp"
+                android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="@id/tv_itemmain_temperaturenow"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tv_itemmain_temperaturenow"
-                app:layout_constraintTop_toTopOf="@id/tv_itemmain_temperaturenow" />
+                app:layout_constraintTop_toTopOf="@id/tv_itemmain_temperaturenow"
+                tools:text="description" />
 
             <HorizontalScrollView
                 android:layout_width="match_parent"

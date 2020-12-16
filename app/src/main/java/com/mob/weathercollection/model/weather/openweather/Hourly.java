@@ -1,7 +1,7 @@
 package com.mob.weathercollection.model.weather.openweather;
 
 public class Hourly {
-    public String temp;
+    public Double temp;
     public long dt;
 
     @Override

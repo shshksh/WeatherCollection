@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -23,10 +23,10 @@
             android:text="날씨 모아"
             android:textColor="@android:color/black"
             android:textSize="25sp"
-            bind:drawableStartCompat="@drawable/ic_baseline_wb_sunny_24"
-            bind:layout_constraintEnd_toEndOf="parent"
-            bind:layout_constraintStart_toStartOf="parent"
-            bind:layout_constraintTop_toTopOf="parent" />
+            app:drawableStartCompat="@drawable/ic_baseline_wb_sunny_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/btn_main_chooselocation"
@@ -39,9 +39,9 @@
             android:onClick="onChooseLocationClick"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_baseline_location_on_24"
-            bind:layout_constraintBottom_toBottomOf="@id/tv_main_titlebar"
-            bind:layout_constraintEnd_toStartOf="@id/btn_main_refresh"
-            bind:layout_constraintTop_toTopOf="@id/tv_main_titlebar" />
+            app:layout_constraintBottom_toBottomOf="@id/tv_main_titlebar"
+            app:layout_constraintEnd_toStartOf="@id/btn_main_refresh"
+            app:layout_constraintTop_toTopOf="@id/tv_main_titlebar" />
 
         <ImageButton
             android:id="@+id/btn_main_refresh"
@@ -54,16 +54,16 @@
             android:onClick="@{() -> vm.refreshAllWeather()}"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_baseline_refresh_24"
-            bind:layout_constraintBottom_toBottomOf="@id/tv_main_titlebar"
-            bind:layout_constraintEnd_toEndOf="parent"
-            bind:layout_constraintTop_toTopOf="@id/tv_main_titlebar" />
+            app:layout_constraintBottom_toBottomOf="@id/tv_main_titlebar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_main_titlebar" />
 
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            bind:layout_constraintBottom_toBottomOf="parent"
-            bind:layout_constraintTop_toBottomOf="@+id/tv_main_titlebar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_main_titlebar"
             tools:context=".MainActivity">
 
             <LinearLayout
@@ -74,20 +74,20 @@
                 <include
                     android:id="@+id/layout_kma"
                     layout="@layout/item_main"
-                    bind:location="@{vm.locationName}"
-                    bind:weather="@{vm.kmaWeather}" />
+                    app:location="@{vm.locationName}"
+                    app:weather="@{vm.kmaWeather}" />
 
                 <include
                     android:id="@+id/layout_naver"
                     layout="@layout/item_main"
-                    bind:location="@{vm.locationName}"
-                    bind:weather="@{vm.naverWeather}" />
+                    app:location="@{vm.locationName}"
+                    app:weather="@{vm.naverWeather}" />
 
                 <include
                     android:id="@+id/layout_openweather"
                     layout="@layout/item_main"
-                    bind:location="@{vm.locationName}"
-                    bind:weather="@{vm.openWeather}" />
+                    app:location="@{vm.locationName}"
+                    app:weather="@{vm.openWeather}" />
 
             </LinearLayout>
 
