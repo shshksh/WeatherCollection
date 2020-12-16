@@ -8,12 +8,11 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import androidx.fragment.app.DialogFragment;
 
 import java.lang.reflect.Field;
 
-public class ChooseLocationDialog extends BottomSheetDialogFragment {
+public class ChooseLocationDialog extends DialogFragment {
 
     String selectType;
     View requestView;

@@ -40,7 +40,7 @@ public class ChooseLocationActivity extends AppCompatActivity implements ChooseL
         binding.btnChooselocationComplete.setOnClickListener(view -> {
             if (!locationData[2].isEmpty()) {
                 Intent result = new Intent();
-                result.putExtra("locationCode", locationData[2].split("_")[1]);
+                result.putExtra("location", locationData[2]);
                 Log.d(this.getClass().getSimpleName(), "onCompleteClick: " + locationData[2]);
                 setResult(RESULT_OK, result);
                 finish();

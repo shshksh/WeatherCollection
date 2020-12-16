@@ -27,6 +27,7 @@
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:text="완료"
+            android:textColor="@android:color/black"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -37,7 +38,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:text="시/도" />
+        android:text="시/도"
+        android:textColor="@android:color/black" />
 
     <LinearLayout
         android:id="@+id/ll_chooselocation_city"
@@ -72,7 +74,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="15dp"
-        android:text="구/군" />
+        android:text="구/군"
+        android:textColor="@android:color/black" />
 
     <LinearLayout
         android:id="@+id/ll_chooselocation_county"
@@ -107,7 +110,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="15dp"
-        android:text="동/읍/면/리" />
+        android:text="동/읍/면/리"
+        android:textColor="@android:color/black" />
 
     <LinearLayout
         android:id="@+id/ll_chooselocation_town"

@@ -36,8 +36,10 @@ public class Weather {
 
     public Weather(OpenWeather openWeather, String location) {
         this.location = location;
-        this.dataSource = "OpenWeatherMap";
-        this.mainTemp = openWeather.current.temp;
+        this.dataSource = "OpenWeather";
+        Double temp = openWeather.current.temp;
+        temp = Math.round(temp * 10) / 10.0;
+        this.mainTemp = Double.toString(temp);
         this.description = openWeather.current.weather.get(0).description;
         this.tempList = hourly2temp(openWeather.hourly);
     }
